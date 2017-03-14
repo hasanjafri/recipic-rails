@@ -1,0 +1,51 @@
+
+<% if user_signed_in? %>
+
+	<div class="container">
+		<div class="col-md-8 col-sm-12">
+		  <h2>Recommended Recipes</h2>
+			<div class="table-responsive">
+			  <table class="table table-hover">
+			    <thead>
+			      <tr>
+			        <th>Name</th>
+			        <th>Description</th>
+			        <th>Price</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+						<% @recipes.each do |recipe| %>
+							<%= link_to recipe_path(recipe) do %>
+								<tr>
+					        <td><%= recipe.name %></td>
+									<td><%= recipe.description %></td>
+					        <td><%= rand(50..300) %> coins</td>
+									<td><%= link_to "View", recipe_path(recipe), class:"btn btn-success", role:"button" %></td>
+				      	</tr>
+							<% end %>
+						<% end %>
+			    </tbody>
+			  </table>
+			</div>
+		</div>
+
+		<div class="col-md-4 col-sm-12">
+		</div>
+	</div>
+
+
+
+
+
+<% else %>
+
+	<div class="background-grocery" style="background: url('/grocery_background.jpg') no-repeat center center fixed;"></div>
+
+	<div class="grocery-overlay">
+		<div class="grocery-text">
+			<h1>Recipe's in a Pic</h1>
+			<h4>Changing cooking, one recipe at a time.</h4>
+		</div>
+	</div>
+
+<% end %>
